@@ -71,7 +71,7 @@
     .strip-quote p { font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 36px; font-weight: 400; color: #50624A; line-height: 1.5; max-width: 900px; text-align: center; }
 
     /* SKIN TYPES */
-    .skin-types { width: 100%; display: grid; grid-template-columns: 1fr 1fr; min-height: 680px; }
+    .skin-types { width: 100%; display: grid; grid-template-columns: 1fr 1fr; min-height: 680px; scroll-margin-top: 110px; }
     .skin-left { background-color: var(--sage); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 120px 8%; text-align: center; }
     .skin-left h2 { font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 36px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #000; line-height: 1.3; }
     .skin-left p { margin-top: 32px; font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 18px; font-weight: 400; color: #000; line-height: 1.6; letter-spacing: 0.5px; max-width: 440px; }
@@ -194,6 +194,7 @@
       .hero::after { background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.15) 100%); }
 
       .results { padding: 70px 7% 60px; }
+      .skin-types { scroll-margin-top: 77px; }
       .skin-left { padding: 60px 8%; }
       .skin-right { padding: 40px 7%; }
       .strip-quote { padding: 60px 8%; }
@@ -517,7 +518,7 @@ function setActive(el) {
         : Array.from(container.querySelectorAll(itemSelector));
 
       found.forEach(el => {
-        if (!seen.has(el) && !el.closest("header") && !el.closest("footer") && !el.closest(".testimonials")) {
+        if (!seen.has(el) && !el.closest("header") && !el.closest("footer") && !el.closest(".testimonials") && !el.closest(".blog-card")) {
           seen.add(el);
           items.push(el);
         }
