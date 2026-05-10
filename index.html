@@ -109,7 +109,7 @@
     .result-card.placeholder .placeholder-text { font-family: 'Lato',sans-serif; font-size: 13px; color: var(--green); opacity: 0.5; }
 
     /* TESTIMONIALS */
-    .testimonials { width: 100%; background-color: var(--bg); padding: 120px 0 110px; }
+    .testimonials { width: 100%; background-color: var(--bg); padding: 120px 0 110px; scroll-margin-top: 110px; }
     .testi-label { padding: 0 7%; margin-bottom: 44px; }
     .testi-slider-wrap { position: relative; display: flex; align-items: center; }
     .testi-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; background: none; border: none; cursor: pointer; font-size: 26px; color: var(--text); padding: 10px 20px; opacity: 0.55; transition: opacity 0.2s; user-select: none; }
@@ -197,7 +197,7 @@
       .skin-left { padding: 60px 8%; }
       .skin-right { padding: 40px 7%; }
       .strip-quote { padding: 60px 8%; }
-      .testimonials { padding: 60px 0 50px; }
+      .testimonials { padding: 60px 0 50px; scroll-margin-top: 77px; }
       .blogs { padding: 60px 7% 70px; }
       .strip-icons { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; padding: 34px 12px; align-items: start; }
       .strip-icons .badge { gap: 8px; }
@@ -448,17 +448,12 @@ function setActive(el) {
   document.getElementById('hamburger').classList.remove('open');
   document.body.classList.remove('menu-open');
 
-  // Instantly reveal all scroll-animated elements in the target section
-  const href = el.getAttribute('href');
-  if (href && href.startsWith('#')) {
-    const target = document.querySelector(href);
-    if (target) {
-      target.querySelectorAll('.scroll-anim').forEach(el => {
-        el.style.transitionDelay = '0s, 0s';
-        el.classList.add('is-visible');
-      });
-    }
-  }
+  // Disable smooth scroll so nav jumps are instant
+  document.documentElement.style.scrollBehavior = 'auto';
+
+  setTimeout(() => {
+    document.documentElement.style.scrollBehavior = '';
+  }, 100);
 }
     document.addEventListener('click', function(e) {
       const ov = document.getElementById('navOverlay'), hb = document.getElementById('hamburger');
@@ -514,10 +509,6 @@ function setActive(el) {
 
     containers.forEach(container => {
       if (container.classList.contains('testimonials')) {
-        if (!seen.has(container)) {
-          seen.add(container);
-          items.push(container);
-        }
         return;
       }
 
