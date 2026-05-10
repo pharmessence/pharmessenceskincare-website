@@ -441,13 +441,25 @@
       document.getElementById('hamburger').classList.toggle('open');
       document.body.classList.toggle('menu-open');
     }
-    function setActive(el) {
-      document.querySelectorAll('.nav-overlay nav a').forEach(a => a.classList.remove('active'));
-      el.classList.add('active');
-      document.getElementById('navOverlay').classList.remove('open');
-      document.getElementById('hamburger').classList.remove('open');
-      document.body.classList.remove('menu-open');
+function setActive(el) {
+  document.querySelectorAll('.nav-overlay nav a').forEach(a => a.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('navOverlay').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.classList.remove('menu-open');
+
+  // Instantly reveal all scroll-animated elements in the target section
+  const href = el.getAttribute('href');
+  if (href && href.startsWith('#')) {
+    const target = document.querySelector(href);
+    if (target) {
+      target.querySelectorAll('.scroll-anim').forEach(el => {
+        el.style.transitionDelay = '0s, 0s';
+        el.classList.add('is-visible');
+      });
     }
+  }
+}
     document.addEventListener('click', function(e) {
       const ov = document.getElementById('navOverlay'), hb = document.getElementById('hamburger');
       if (!ov.contains(e.target) && !hb.contains(e.target)) { ov.classList.remove('open'); hb.classList.remove('open'); document.body.classList.remove('menu-open'); }
