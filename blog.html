@@ -50,9 +50,11 @@
     .nav-overlay nav a:hover, .nav-overlay nav a.active { background-color: var(--green); color: #fff; border-left: 4px solid var(--green); }
 
     /* PAGE HERO */
-    .page-hero { padding: 180px 7% 80px; background-color: var(--sage); text-align: center; }
-    .page-hero h1 { font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 48px; font-weight: 600; color: #000; line-height: 1.2; margin-bottom: 16px; }
-    .page-hero p { font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 18px; font-weight: 400; color: #444; max-width: 560px; margin: 0 auto; line-height: 1.6; }
+    .page-hero { padding: 180px 7% 80px; background-color: var(--sage); }
+    .page-hero-label { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+    .accent-bar { width: 6px; height: 42px; background-color: #6E7F60; border-radius: 3px; flex-shrink: 0; }
+    .page-hero-label span { font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 36px; font-weight: 600; letter-spacing: 0px; color: #6E7F60; }
+    .page-hero p { font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 18px; font-weight: 400; color: #444; line-height: 1.6; }
 
     /* BLOGS GRID */
     .blogs { width: 100%; background-color: var(--bg); padding: 80px 7% 120px; }
@@ -127,9 +129,9 @@
     </nav>
   </div>
 
-  <!-- PAGE HERO -->
+<!-- PAGE HERO -->
   <section class="page-hero">
-    <h1>From the Lab</h1>
+    <div class="page-hero-label"><div class="accent-bar"></div><span>From the Lab</span></div>
     <p>Pharmacist insights, clean ingredient education, and the story behind PharmEssence — straight from the source.</p>
   </section>
 
