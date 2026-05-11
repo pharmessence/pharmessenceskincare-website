@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Why I Created PharmEssence | PharmEssence</title>
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <meta name="description" content="The story behind PharmEssence — why a pharmacist set out to create a face cream free of synthetic ingredients, crafted from scratch for real skin." />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    @font-face { font-family: 'FathanDisplaySerif'; src: url('fonts/Fathan-DisplaySerif.otf') format('opentype'), url('fonts/Fathan-DisplaySerif.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+    
+    @font-face {
+      font-family: 'Kastelov-Axiforma';
+      src: url('Kastelov-Axiforma-Light.otf') format('opentype'),
+           url('Kastelov Axiforma Light.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Kastelov-Axiforma';
+      src: url('Kastelov-Axiforma-SemiBold.otf') format('opentype'),
+           url('Kastelov Axiforma SemiBold.otf') format('opentype');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    
+    @font-face { font-family: 'BeautyDemo'; src: url('BeautyDemo.ttf') format('truetype'), url('BeautyDemo.tff') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+
+:root { --bg: #fefff1; --green: #50624a; --text: #1a1a1a; --sage: #dbdfce; }
+    html { scroll-behavior: smooth; }
+    body { background-color: var(--bg); font-family: 'Lato', sans-serif; color: var(--text); }
+
+    /* HEADER */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background-color: var(--bg); height: 110px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(80,98,74,0.12); }
+    .hamburger { position: absolute; left: 32px; display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; z-index: 1100; }
+    .hamburger span { display: block; width: 26px; height: 3px; background-color: var(--text); transition: all 0.35s ease; transform-origin: center; border-radius: 2px; }
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .logo { display: flex; align-items: center; justify-content: center; text-decoration: none; }
+    .logo img { height: 80px; width: auto; object-fit: contain; }
+    .nav-overlay { position: fixed; top: 110px; left: 0; right: 0; background-color: var(--bg); z-index: 999; max-height: 0; overflow: hidden; transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1); border-bottom: 2px solid rgba(80,98,74,0.15); box-shadow: 0 6px 24px rgba(0,0,0,0.06); }
+    .nav-overlay.open { max-height: 400px; }
+    .nav-overlay nav { padding: 10px 0; }
+    .nav-overlay nav a { display: block; width: 100%; padding: 15px 52px; font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 20px; font-weight: 600; line-height: 1.2; letter-spacing: 0.5px; text-decoration: none; color: var(--text); transition: background 0.22s ease, color 0.22s ease; border-left: 4px solid transparent; }
+    .nav-overlay nav a:hover, .nav-overlay nav a.active { background-color: var(--green); color: #fff; border-left: 4px solid var(--green); }
+
+    /* FOOTER */
+    footer { width: 100%; background-color: var(--green); position: relative; overflow: hidden; }
+    .footer-main { display: flex; align-items: center; justify-content: space-between; padding: 36px 7% 44px; gap: 24px; flex-wrap: wrap; }
+    .footer-logo { display: flex; flex-direction: column; align-items: center; text-decoration: none; }
+    .footer-logo img { height: 90px; width: auto; object-fit: contain; filter: brightness(0) invert(1); }
+    .footer-right { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .footer-socials { display: flex; gap: 16px; align-items: center; }
+    .footer-socials a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.55); color: #fff; text-decoration: none; transition: background 0.22s, border-color 0.22s; }
+    .footer-socials a:hover { background: rgba(255,255,255,0.18); border-color: #fff; }
+    .footer-socials a svg { width: 17px; height: 17px; fill: #fff; stroke: none; }
+    .footer-socials a.insta svg { fill: none; stroke: #fff; stroke-width: 1.8; }
+    .footer-socials a.mail svg { fill: none; stroke: #fff; stroke-width: 1.8; }
+    .footer-email { font-family: 'Lato',sans-serif; font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.82); letter-spacing: 0.5px; text-decoration: none; }
+    .footer-email:hover { color: #fff; }
+    .footer-contact-row { display: flex; align-items: center; gap: 6px; }
+    .footer-questions-label { font-family: 'Lato', sans-serif; font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.82); letter-spacing: 0.5px; }
+    .footer-wave-divider { display: block; line-height: 0; }
+    .footer-wave-divider svg { display: block; width: 100%; height: 44px; }
+    .footer-copy { background-color: rgba(0,0,0,0.13); padding: 14px 7%; text-align: center; }
+    .footer-copy p { font-family: 'Lato',sans-serif; font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.7); letter-spacing: 0.3px; }
+
+    /* Scroll to top */
+    .scroll-top { position: fixed; bottom: 28px; right: 28px; width: 42px; height: 42px; background-color: var(--green); color: #fff; border: none; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s; z-index: 500; }
+    .scroll-top.visible { opacity: 1; pointer-events: auto; }
+    .scroll-top:hover { transform: translateY(-3px); }
+    .scroll-top svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    body.menu-open::after { content: ''; position: fixed; inset: 0; top: 80px; background: rgba(0,0,0,0.06); z-index: 998; pointer-events: none; }
+
+    @media (max-width: 900px) {
+      .footer-main { flex-direction: column; align-items: center; text-align: center; }
+    }
+    @media (max-width: 768px) {
+      .hamburger { left: 20px; }
+    }
+
+    /* Blog Page Specific Styles */
+    .blog-hero { padding: 180px 7% 80px; background-color: var(--sage); text-align: center; }
+    .blog-hero h1 { font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 36px; font-weight: 600; color: #000; margin-bottom: 20px; line-height: 1.3; }
+    .blog-hero .meta-date { font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 16px; color: #4a4a4a; text-transform: uppercase; letter-spacing: 1px; }
+    .blog-content-wrap { max-width: 1180px; margin: 0 auto; padding: 60px 20px 120px; background-color: var(--bg); }
+    .blog-featured-image { display: block; width: 100%; max-width: 1140px; max-height: 700px; object-fit: cover; border-radius: 12px; margin-bottom: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+    .blog-body p { font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 18px; font-weight: 400; line-height: 1.8; color: #000; margin-bottom: 24px; }
+    .blog-body h2 { font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 36px; font-weight: 600; color: #000; margin: 40px 0 20px; line-height: 1.3; }
+    .blog-body .author-sig { font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 400; color: #50624a; margin-top: 40px; margin-bottom: 0; line-height: 1.6; }
+    .back-btn { display: inline-block; margin-top: 40px; padding: 12px 28px; border: 1px solid #6E7F60; color: #6E7F60; text-decoration: none; border-radius: 99px; font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 16px; transition: all 0.3s ease; }
+    .back-btn:hover { background-color: #6E7F60; color: #fff; }
+
+    .detailed-meta { display: flex; align-items: center; justify-content: center; gap: 12px; font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 15px; color: #666; margin-bottom: 24px; flex-wrap: wrap; }
+    .detailed-meta .meta-item { display: flex; align-items: center; gap: 6px; }
+    .detailed-meta svg { color: #666; }
+    .detailed-meta .meta-separator { color: #999; }
+
+    @media (max-width: 768px) {
+      .blog-hero h1 { font-size: 28px; }
+      .blog-hero { padding: 140px 7% 60px; }
+      .detailed-meta { gap: 8px; font-size: 13px; flex-direction: column; align-items: center; gap: 10px; }
+      .detailed-meta .meta-separator { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <a href="index.html#home" class="logo"><img src="Pharmaessence logo.svg" alt="PharmEssence" /></a>
+  </header>
+
+  <!-- NAV -->
+  <div class="nav-overlay" id="navOverlay">
+    <nav>
+      <a href="index.html#home" class="active" onclick="setActive(this)">Home</a>
+      <a href="index.html#skin-types" onclick="setActive(this)">Skin Types</a>
+      <a href="index.html#results" onclick="setActive(this)">Results</a>
+      <a href="index.html#testimonial" onclick="setActive(this)">Testimonials</a>
+      <a href="index.html#blogs" onclick="setActive(this)">Blog</a>
+    </nav>
+  </div>
+
+  <!-- BLOG HERO -->
+  <section class="blog-hero">
+    <div class="detailed-meta">
+      <div class="meta-item">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <span>Josh Cullen, PharmD</span>
+      </div>
+      <span class="meta-separator">-</span>
+      <div class="meta-item">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        <span>May 11, 2026</span>
+      </div>
+      <span class="meta-separator">-</span>
+      <div class="meta-item">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+        <span>PharmEssence</span>
+      </div>
+    </div>
+    <h1>Why I Created PharmEssence</h1>
+  </section>
+
+  <!-- BLOG CONTENT -->
+  <div class="blog-content-wrap">
+    <img src="Images/Images/blogs image 4.jpeg" alt="Why I Created PharmEssence" class="blog-featured-image" />
+    <div class="blog-body">
+
+      <p>It started with a frustration a lot of people probably share.</p>
+
+      <p>Finding a face cream that actually works is hard enough. Sticking with one is even harder — because the moment you find something that actually delivers, there's a real chance it disappears from the shelf without warning. My wife had finally landed on one she loved — the kind you stop thinking about because it just does its job. Then she went back to reorder it and it was gone. Discontinued, unavailable, no explanation. It happened again with the next one. Then again.</p>
+
+      <p>If that sounds familiar, you're not alone.</p>
+
+      <p>I began looking into why this kept happening — and what I found in those ingredient lists was more frustrating than the availability problem itself. Synthetic fillers. Unnecessary preservatives. Fragrance with no benefit to your skin whatsoever. Ingredients that exist to extend shelf life and reduce manufacturing costs, not to do anything meaningful for the person actually using the product. As a pharmacist, I read ingredient lists with a clinical eye. What I kept seeing didn't sit right with me.</p>
+
+      <p>There had to be a better way.</p>
+
+      <p>So I started from scratch. Months of studying emulsion science — how to properly bring oil and water together into something stable and skin-friendly. The goal was something that works with the skin's natural moisture rather than just sitting on top of it. Nothing synthetic. Nothing added for appearance or scent. The formula uses purified water — because the quality of every ingredient matters, including the ones that seem unremarkable.</p>
+
+      <p>Sourcing was equally important. Wherever a certified organic option genuinely exists, that's what goes into the formula. But honest formulation also means being transparent about where organic certification simply isn't possible — certain ingredients like cetyl alcohol and glyceryl stearate have no certified organic form available anywhere on the market. Rather than hiding behind vague label language or making claims that don't hold up to scrutiny, those realities are stated plainly. You deserve to know exactly what you're getting and why.</p>
+
+      <p>Then came the real work. Batch after batch. Test, take notes, make changes, repeat. My wife — with her sensitive skin — was the most important critic throughout. Honest, specific, and never shy about saying when something wasn't right. Eventually I joined the testing too, with my own oily T-zone to contend with, and my mother-in-law whose mature dry skin has its own set of demands. Every time the formula was pushed in a new direction, something else broke. Texture. Absorption. Feel on the skin. After roughly twelve months of iteration, the cornerstone formula emerged. Not because it was declared perfect, but because it kept working across very different skin types without compromise.</p>
+
+      <p>The feedback made the decision simple. This was something worth sharing.</p>
+
+      <p>PharmEssence exists for anyone who has struggled to find a face cream free of synthetic ingredients — made by someone who understands exactly what each ingredient does and why it either belongs or doesn't. That pharmacist perspective isn't a marketing angle. It's the reason the formula is what it is. Every batch is still compounded by hand, with the same care and precision I bring to my work as a practicing pharmacist. That won't change.</p>
+
+      <p>One more thing — the name. PharmEssence came together while at work one day. The word pharmacy brings the knowledge — of ingredients, of interactions, of what belongs in a formulation and what doesn't. The word essence brings the purpose — to deliver genuine health to the skin, the largest organ of the human body. Together they say everything the brand needs to say.</p>
+
+      <p>Every jar of The Everyday Face Cream is a direct extension of that original goal — to give people a product they can count on for consistent quality and clean ingredients, made by someone who will always be transparent about what's in it and why. If you've been searching for something like that, this was made with you in mind.</p>
+
+      <p class="author-sig">— Josh Cullen, PharmD<br>Founder, PharmEssence</p>
+
+      <a href="index.html#blogs" class="back-btn">&larr; Back to the Lab</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-main">
+      <a href="index.html" class="footer-logo">
+        <img src="Images/WHITE-LOGO.png" alt="PharmEssence" />
+      </a>
+      <div class="footer-right">
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/profile.php?id=61576563575415" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@pharmessenceskincare" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="#fff"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/pharmessenceskincare/" aria-label="Instagram" class="insta" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="mailto:hello@pharmessenceskincare.com" aria-label="Email" class="mail" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </a>
+        </div>
+        <div class="footer-contact-row">
+          <span class="footer-questions-label">Questions?</span>
+          <a href="mailto:hello@pharmessenceskincare.com" class="footer-email" target="_blank" rel="noopener noreferrer">hello@pharmessenceskincare.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-wave-divider">
+      <svg viewBox="0 0 1440 44" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,22 C360,44 1080,0 1440,22 L1440,44 L0,44 Z" fill="rgba(0,0,0,0.13)"/>
+      </svg>
+    </div>
+    <div class="footer-copy">
+      <p>© 2026 PharmEssence LLC | PharmEssence™ is a trademark of PharmEssence LLC.</p>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navOverlay').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('open');
+      document.body.classList.toggle('menu-open');
+    }
+    function setActive(el) {
+      document.querySelectorAll('.nav-overlay nav a').forEach(a => a.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('navOverlay').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+      document.body.classList.remove('menu-open');
+    }
+    window.addEventListener('scroll', function() {
+      document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 400);
+    });
+  </script>
+
+</body>
+</html>
