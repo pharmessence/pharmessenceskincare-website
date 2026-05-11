@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <title>From the Lab | PharmEssence</title>
+  <meta name="description" content="Pharmacist insights, clean ingredient education, and the story behind PharmEssence — from the lab to your skin." />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    @font-face { font-family: 'FathanDisplaySerif'; src: url('fonts/Fathan-DisplaySerif.otf') format('opentype'), url('fonts/Fathan-DisplaySerif.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+
+    @font-face {
+      font-family: 'Kastelov-Axiforma';
+      src: url('Kastelov-Axiforma-Light.otf') format('opentype'),
+           url('Kastelov Axiforma Light.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Kastelov-Axiforma';
+      src: url('Kastelov-Axiforma-SemiBold.otf') format('opentype'),
+           url('Kastelov Axiforma SemiBold.otf') format('opentype');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face { font-family: 'BeautyDemo'; src: url('BeautyDemo.ttf') format('truetype'), url('BeautyDemo.tff') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+
+    :root { --bg: #fefff1; --green: #50624a; --text: #1a1a1a; --sage: #dbdfce; }
+    html { scroll-behavior: smooth; }
+    body { background-color: var(--bg); font-family: 'Lato', sans-serif; color: var(--text); }
+
+    /* HEADER */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background-color: var(--bg); height: 110px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(80,98,74,0.12); }
+    .hamburger { position: absolute; left: 32px; display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; z-index: 1100; }
+    .hamburger span { display: block; width: 26px; height: 3px; background-color: var(--text); transition: all 0.35s ease; transform-origin: center; border-radius: 2px; }
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .logo { display: flex; align-items: center; justify-content: center; text-decoration: none; }
+    .logo img { height: 80px; width: auto; object-fit: contain; }
+    .nav-overlay { position: fixed; top: 110px; left: 0; right: 0; background-color: var(--bg); z-index: 999; max-height: 0; overflow: hidden; transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1); border-bottom: 2px solid rgba(80,98,74,0.15); box-shadow: 0 6px 24px rgba(0,0,0,0.06); }
+    .nav-overlay.open { max-height: 400px; }
+    .nav-overlay nav { padding: 10px 0; }
+    .nav-overlay nav a { display: block; width: 100%; padding: 15px 52px; font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 20px; font-weight: 600; line-height: 1.2; letter-spacing: 0.5px; text-decoration: none; color: var(--text); transition: background 0.22s ease, color 0.22s ease; border-left: 4px solid transparent; }
+    .nav-overlay nav a:hover, .nav-overlay nav a.active { background-color: var(--green); color: #fff; border-left: 4px solid var(--green); }
+
+    /* PAGE HERO */
+    .page-hero { padding: 180px 7% 80px; background-color: var(--sage); text-align: center; }
+    .page-hero h1 { font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 48px; font-weight: 600; color: #000; line-height: 1.2; margin-bottom: 16px; }
+    .page-hero p { font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 18px; font-weight: 400; color: #444; max-width: 560px; margin: 0 auto; line-height: 1.6; }
+
+    /* BLOGS GRID */
+    .blogs { width: 100%; background-color: var(--bg); padding: 80px 7% 120px; }
+    .blogs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; align-items: stretch; }
+    .blog-card { display: flex; flex-direction: column; }
+    .blog-img-wrap { width: 100%; aspect-ratio: 4/3; overflow: hidden; border-radius: 4px; margin-bottom: 18px; background: var(--sage); }
+    .blog-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+    .blog-card:hover .blog-img-wrap img { transform: scale(1.04); }
+    .blog-date { font-family: 'Lato', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: #888; display: block; margin-bottom: 12px; }
+    .blog-title { font-family: 'Lato', sans-serif; font-size: 20px; font-weight: 700; color: var(--text); line-height: 1.35; margin-bottom: 14px; }
+    .blog-excerpt { font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 18px; font-weight: 400; color: #444; line-height: 1.6; letter-spacing: 0.5px; margin-bottom: 24px; flex-grow: 1; }
+    .blog-btn { display: inline-block; padding: 14px 32px; background-color: var(--green); color: #fff; font-family: 'Kastelov-Axiforma', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 400; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; border: 1.5px solid var(--green); transition: background 0.25s, color 0.25s; align-self: flex-start; margin-top: auto; }
+    .blog-btn:hover { background: transparent; color: var(--green); }
+
+    /* FOOTER */
+    footer { width: 100%; background-color: var(--green); position: relative; overflow: hidden; }
+    .footer-main { display: flex; align-items: center; justify-content: space-between; padding: 36px 7% 44px; gap: 24px; flex-wrap: wrap; }
+    .footer-logo { display: flex; flex-direction: column; align-items: center; text-decoration: none; }
+    .footer-logo img { height: 90px; width: auto; object-fit: contain; filter: brightness(0) invert(1); }
+    .footer-right { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .footer-socials { display: flex; gap: 16px; align-items: center; }
+    .footer-socials a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.55); color: #fff; text-decoration: none; transition: background 0.22s, border-color 0.22s; }
+    .footer-socials a:hover { background: rgba(255,255,255,0.18); border-color: #fff; }
+    .footer-socials a svg { width: 17px; height: 17px; fill: #fff; stroke: none; }
+    .footer-socials a.insta svg { fill: none; stroke: #fff; stroke-width: 1.8; }
+    .footer-socials a.mail svg { fill: none; stroke: #fff; stroke-width: 1.8; }
+    .footer-email { font-family: 'Lato', sans-serif; font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.82); letter-spacing: 0.5px; text-decoration: none; }
+    .footer-email:hover { color: #fff; }
+    .footer-contact-row { display: flex; align-items: center; gap: 6px; }
+    .footer-questions-label { font-family: 'Lato', sans-serif; font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.82); letter-spacing: 0.5px; }
+    .footer-wave-divider { display: block; line-height: 0; }
+    .footer-wave-divider svg { display: block; width: 100%; height: 44px; }
+    .footer-copy { background-color: rgba(0,0,0,0.13); padding: 14px 7%; text-align: center; }
+    .footer-copy p { font-family: 'Lato', sans-serif; font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.7); letter-spacing: 0.3px; }
+
+    /* Scroll to top */
+    .scroll-top { position: fixed; bottom: 28px; right: 28px; width: 42px; height: 42px; background-color: var(--green); color: #fff; border: none; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s; z-index: 500; }
+    .scroll-top.visible { opacity: 1; pointer-events: auto; }
+    .scroll-top:hover { transform: translateY(-3px); }
+    .scroll-top svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    body.menu-open::after { content: ''; position: fixed; inset: 0; top: 80px; background: rgba(0,0,0,0.06); z-index: 998; pointer-events: none; }
+
+    @media (max-width: 900px) {
+      .blogs-grid { grid-template-columns: 1fr; }
+      .footer-main { flex-direction: column; align-items: center; text-align: center; }
+    }
+    @media (max-width: 768px) {
+      .hamburger { left: 20px; }
+      .page-hero { padding: 140px 7% 60px; }
+      .page-hero h1 { font-size: 32px; }
+      .blogs { padding: 48px 5% 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <a href="index.html#home" class="logo"><img src="Pharmaessence logo.svg" alt="PharmEssence" /></a>
+  </header>
+
+  <!-- NAV -->
+  <div class="nav-overlay" id="navOverlay">
+    <nav>
+      <a href="index.html#home" onclick="setActive(this)">Home</a>
+      <a href="index.html#skin-types" onclick="setActive(this)">Skin Types</a>
+      <a href="index.html#results" onclick="setActive(this)">Results</a>
+      <a href="index.html#testimonial" onclick="setActive(this)">Testimonials</a>
+      <a href="blog.html" class="active" onclick="setActive(this)">Blog</a>
+    </nav>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <h1>From the Lab</h1>
+    <p>Pharmacist insights, clean ingredient education, and the story behind PharmEssence — straight from the source.</p>
+  </section>
+
+  <!-- ALL BLOG POSTS -->
+  <section class="blogs">
+    <div class="blogs-grid">
+      <article class="blog-card">
+        <div class="blog-img-wrap"><img src="Images/Images/blogs image 4.jpeg" alt="Why I Created PharmEssence" /></div>
+        <span class="blog-date">May 11, 2026</span>
+        <h3 class="blog-title">Why I Created PharmEssence</h3>
+        <p class="blog-excerpt">It started with a frustration a lot of people probably share. Finding a face cream that actually works is hard enough. Sticking with one is even harder — because the moment you find something that delivers, there's a real chance it disappears without warning.</p>
+        <a href="blog4.html" class="blog-btn">Read More</a>
+      </article>
+      <article class="blog-card">
+        <div class="blog-img-wrap"><img src="Images/Images/blogs image 3.jpeg" alt="Natural Ingredients Your Skin Will Love" /></div>
+        <span class="blog-date">April 18, 2026</span>
+        <h3 class="blog-title">Natural Ingredients Your Skin Will Love</h3>
+        <p class="blog-excerpt">Every formulation starts with a question: What does the skin actually need, and what's the most honest way to deliver it? The answer led me away from what was popular and toward what was actually better.</p>
+        <a href="blog3.html" class="blog-btn">Read More</a>
+      </article>
+      <article class="blog-card">
+        <div class="blog-img-wrap"><img src="Images/Images/blogs image 2.jpeg" alt="The Science Behind Our Signature Moisturizer" /></div>
+        <span class="blog-date">April 2, 2026</span>
+        <h3 class="blog-title">The Science Behind Our Signature Moisturizer</h3>
+        <p class="blog-excerpt">I think about skincare formulation the way I think about an orchestra. Every ingredient is its own instrument — capable of doing something on its own, but truly remarkable only when working in harmony with everything else around it.</p>
+        <a href="blog2.html" class="blog-btn">Read More</a>
+      </article>
+      <article class="blog-card">
+        <div class="blog-img-wrap"><img src="Images/Images/blogs image 1.jpeg" alt="Why Naturally Sourced Skincare is More Than Just a Trend" /></div>
+        <span class="blog-date">March 15, 2026</span>
+        <h3 class="blog-title">Why Naturally Sourced Skincare is More Than Just a Trend</h3>
+        <p class="blog-excerpt">As a pharmacist, I've spent years watching people accept something they probably shouldn't — that the products we eat, drink, and put on our skin are just going to be filled with ingredients that don't belong there. Somewhere along the way, we stopped questioning it.</p>
+        <a href="blog1.html" class="blog-btn">Read More</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-main">
+      <a href="index.html" class="footer-logo">
+        <img src="Images/WHITE-LOGO.png" alt="PharmEssence" />
+      </a>
+      <div class="footer-right">
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/profile.php?id=61576563575415" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@pharmessenceskincare" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="#fff"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/pharmessenceskincare/" aria-label="Instagram" class="insta" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="mailto:hello@pharmessenceskincare.com" aria-label="Email" class="mail" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </a>
+        </div>
+        <div class="footer-contact-row">
+          <span class="footer-questions-label">Questions?</span>
+          <a href="mailto:hello@pharmessenceskincare.com" class="footer-email" target="_blank" rel="noopener noreferrer">hello@pharmessenceskincare.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-wave-divider">
+      <svg viewBox="0 0 1440 44" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,22 C360,44 1080,0 1440,22 L1440,44 L0,44 Z" fill="rgba(0,0,0,0.13)"/>
+      </svg>
+    </div>
+    <div class="footer-copy">
+      <p>© 2026 PharmEssence LLC | PharmEssence™ is a trademark of PharmEssence LLC.</p>
+    </div>
+  </footer>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navOverlay').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('open');
+      document.body.classList.toggle('menu-open');
+    }
+    function setActive(el) {
+      document.querySelectorAll('.nav-overlay nav a').forEach(a => a.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('navOverlay').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+      document.body.classList.remove('menu-open');
+    }
+    window.addEventListener('scroll', function() {
+      document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 400);
+    });
+  </script>
+
+</body>
+</html>
